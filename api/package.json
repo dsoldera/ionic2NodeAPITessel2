@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-tessel2",
+  "version": "1.0.0",
+  "description": "A NodeJs RestFull API to run Tesse2\u001b[Dl\u001b[C2 Javascript Code",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "tessel2",
+    "nodejs"
+  ],
+  "author": "Danielle Soldera",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "express": "^4.15.2"
+  }
+}
