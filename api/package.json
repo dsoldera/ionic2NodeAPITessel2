@@ -16,6 +16,8 @@
   "devDependencies": {
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "johnny-five": "^0.10.6",
+    "tessel-io": "^0.10.1"
   }
 }
