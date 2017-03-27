@@ -1,34 +1,65 @@
-'use strict';
 
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
-var five = require('johnny-five');
-var tessel = require('tessel-io');
+var tessel = require('tessel');
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
 
-var board = new five.Board({
-  io: new tessel()
+// Configure our HTTP server to respond with "Hello from Tessel!" to all requests.
+var server = http.createServer(function (request, response) {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.end("Hello from Tessel!\n");
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+// Listen on port 8080, IP defaults to 192.168.1.101. Also accessible through [tessel-name].local
+server.listen(8080);
+
+// Put a friendly message in the terminal
+console.log("Server running at http://192.168.1.101:8080/");
 
 
-app.get('/api/contacts', (request, response) => {
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// var server = http.createServer(function (request, response) {
+//   var urlParts = url.parse(request.url, true);
+//   var ledRegex = /leds/;
 
-});
+//   if (urlParts.pathname.match(ledRegex)) {
+//     toggleLED(urlParts.pathname, request, response);
+//   } else {
+//     showIndex(urlParts.pathname, request, response);
+//   }
+// });
 
-app.get('/api/contacts/:id', (request, response) => {
+// server.listen(8080);
 
-});
+// console.log('Server running at http://192.168.1.101:8080/');
 
-const hostname = 'localhost';
-const port = 3001;
+// function showIndex (url, request, response) {
+//   response.writeHead(200, {"Content-Type": "text/html"});
+//   fs.readFile(__dirname + '/index.html', function (err, content) {
+//     if (err) {
+//       throw err;
+//     }
 
-const server = app.listen(port, hostname, () => {
+//     response.end(content);
+//   });
+// }
 
-  console.log(`Server running at http://${hostname}:${port}/`);
-  console.log(`To stop running CTRL + C`);
-});
+// function toggleLED (url, request, response) {
+//   var indexRegex = /(\d)$/;
+//   var result = indexRegex.exec(url);
+//   var index = +result[1];
+
+//   var led = tessel.led[index];
+
+//   led.toggle(function (err) {
+//     if (err) {
+//       console.log(err);
+//       response.writeHead(500, {"Content-Type": "application/json"});
+//       response.end(JSON.stringify({error: err}));
+//     } else {
+//       console.log('running toggleLed');
+//       response.writeHead(200, {"Content-Type": "application/json"});
+//       response.end(JSON.stringify({on: led.isOn}));
+//     }
+//   });
+// }

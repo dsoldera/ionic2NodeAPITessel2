@@ -14,6 +14,8 @@ RestFull NodeJS Api
 Tessel 2
 - http://tessel.github.io/t2-start/
 - npm install -g t2-cli
+- t2 wifi -n <network-name> -p <password>
+- t2 ap -n TesselRouter
 
 
 Johnny-Five
